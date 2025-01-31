@@ -1,53 +1,120 @@
-# Network Science and Graph Learning Project
+Below is a **sample README.md** file that you can use in your GitHub repository to describe this entire lab. It briefly explains the **context** (FB100 dataset), the **objectives** (various network analyses), the **structure** of the code, and **how to run** it. Feel free to adapt the style or content to match your exact project structure.
 
-## Overview
+---
 
-This project involves analyzing social networks from the Facebook100 dataset. The tasks include:
-1. Social Network Analysis
-2. Assortativity Analysis
-3. Link Prediction
-4. Label Propagation
-5. Community Detection
+# **README: Network Science and Graph Learning Lab (NET 4103/7431)**
 
-## Tasks and Code
+This repository contains all code and documentation for the **Network Science and Graph Learning** lab, which examines the **Facebook100 (FB100)** dataset. The FB100 dataset consists of Facebook friendship networks from 100 U.S. universities, circa 2005.
 
-### 1. Social Network Analysis
-- **Degree Distribution**: Analyze the degree distribution of networks.
-- **Clustering and Density**: Compute global and local clustering coefficients and network density.
-- **Degree vs. Local Clustering Coefficient**: Scatter plot of degree vs. local clustering coefficient.
+---
 
-### 2. Assortativity Analysis
-- **Load Data**: Load the FB100 dataset.
-- **Compute Assortativity**: Calculate assortativity based on attributes like student_fac, major, vertex degree, dorm, and gender.
-- **Plot Results**: Visualize the results using scatter plots and density plots.
+## **1. Overview**
 
-### 3. Link Prediction
-- **Abstract Base Class**: Define an abstract base class for link prediction.
-- **Common Neighbors, Jaccard Coefficient, Adamic/Adar Index**: Implement these link prediction methods.
-- **Evaluate Link Prediction**: Evaluate the link prediction methods by removing a fraction of edges and computing precision, recall, and top@k.
+- **Course**: NET 4103/7431 — *Network Science and Graph Learning*  
+- **Instructor**: Vincent Gauthier  
+- **Dataset**: [Facebook100](https://classroom.github.com/a/jm4seIEs) (or downloadable from [this link](https://partage.imt.fr/index.php/s/iyFWSQPJNmc7AC7)), featuring social networks of U.S. universities, each with attributes like dorm, major, gender, and class year.
 
-### 4. Label Propagation
-- **Label Propagation Algorithm**: Implement a semi-supervised label propagation algorithm to predict missing labels.
-- **Test Algorithm**: Test the algorithm on the Facebook100 dataset by removing a fraction of labels and measuring accuracy, F1-score, etc.
+**Goals**:  
+1. **Social Network Analysis**: Degree distributions, clustering coefficients, density, degree–clustering relationships.  
+2. **Assortativity**: Measuring homophily for attributes (student/faculty, dorm, year, major, gender).  
+3. **Link Prediction**: Implement and evaluate Common Neighbors, Jaccard, Adamic–Adar.  
+4. **Label Propagation**: Recover missing node attributes (dorm, major, gender) using semi-supervised label propagation.  
+5. **Community Detection**: Formulate a research question (e.g., “Do students form communities primarily by dorm or year?”) and validate it using Louvain or another algorithm.
 
-### 5. Community Detection
-- **Research Question**: Formulate a research question about community formation based on dorm assignments or other attributes.
-- **Louvain Algorithm**: Use the Louvain algorithm for community detection.
-- **Analyze Communities**: Analyze the detected communities and correlate them with node attributes like dorm, major, or year.
+---
 
-## Running the Code
+## **2. Repository Structure**
 
-1. **Setup**: Ensure you have the required libraries installed (e.g., NetworkX, Matplotlib, Seaborn, Scikit-learn).
-2. **Load Data**: Place the FB100 dataset files in the `data/` directory.
-3. **Run Notebooks**: Execute the Jupyter notebooks to perform the analyses and visualize the results.
+```
+├── data/
+│   ├── Caltech36.gml
+│   ├── MIT8.gml
+│   ├── JohnsHopkins55.gml
+│   └── ... (other FB100 .gml files)
+├── notebooks/
+│   ├── 01_degree_distribution.ipynb
+│   ├── 02_assortativity_analysis.ipynb
+│   ├── 03_link_prediction.ipynb
+│   ├── 04_label_propagation.ipynb
+│   └── 05_community_detection.ipynb
+├── src/
+│   ├── link_prediction.py          # Classes for CommonNeighbors, Jaccard, Adamic–Adar
+│   ├── label_propagation.py        # Semi-supervised label propagation
+│   ├── community_analysis.py       # Louvain + homogeneity/modularity/assortativity
+│   └── utils.py                    # Helper functions (loading data, etc.)
+├── README.md
+└── requirements.txt
+```
 
-## Conclusion
+**Key Directories**:
+- **data/**: Contains GML files for the FB100 networks you’re analyzing.  
+- **notebooks/**: Jupyter notebooks demonstrating each step of the lab.  
+- **src/**: Python modules with your implementation of link prediction, label propagation, and community detection analyses.
 
-The project provides insights into the structure and properties of social networks, including degree distribution, clustering, assortativity, link prediction, and community detection. The results highlight the influence of attributes like dorm, major, and year on community formation and network structure.
+---
 
-## References
+## **3. Setup & Installation**
 
-- [NetworkX Documentation](https://networkx.github.io/documentation/stable/)
-- [Matplotlib Documentation](https://matplotlib.org/stable/contents.html)
-- [Seaborn Documentation](https://seaborn.pydata.org/)
-- [Scikit-learn Documentation](https://scikit-learn.org/stable/documentation.html)
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/YourUsername/fb100-lab.git
+   cd fb100-lab
+   ```
+2. **Install dependencies** (e.g., using `pip`):
+   ```bash
+   pip install -r requirements.txt
+   ```
+   - Make sure you have *NetworkX*, *numpy*, *matplotlib*, *seaborn*, and any other libraries (e.g., *python-louvain* for community detection).
+
+3. **Download FB100 data**  
+   - Place `.gml` files (like `Caltech36.gml`, `MIT8.gml`) inside `data/`.
+
+---
+
+## **4. Running the Analysis**
+
+### 4.1 From Notebooks
+
+1. **Degree Distributions & Clustering (Question 2)**  
+   - Open `notebooks/01_degree_distribution.ipynb`.  
+   - Execute the cells to compute and plot degree distributions, clustering coefficients, edge density, etc.
+
+2. **Assortativity (Question 3)**  
+   - Open `notebooks/02_assortativity_analysis.ipynb`.  
+   - Run the code to calculate assortativity for attributes (dorm, year, major, etc.) across multiple networks.
+
+3. **Link Prediction (Question 4)**  
+   - In `notebooks/03_link_prediction.ipynb`, you can remove fractions of edges, compute metrics (Common Neighbors, Jaccard, Adamic–Adar), and evaluate precision/recall at k.
+
+4. **Label Propagation (Question 5)**  
+   - `notebooks/04_label_propagation.ipynb` shows how you remove 10%, 20%, or 30% of node attributes and propagate labels using a semi-supervised approach, measuring accuracy, MAE, or F1-score.
+
+5. **Community Detection (Question 6)**  
+   - `notebooks/05_community_detection.ipynb` loads specific networks (Caltech, MIT, etc.), applies Louvain or another algorithm, and compares discovered communities to node attributes (dorm vs. year). This addresses the research question about which attribute best explains community structure.
+
+### 4.2 From Command Line
+
+- You can also run Python scripts directly from the `src/` folder (e.g., `python src/link_prediction.py`) if you’ve organized them to accept command-line arguments.
+
+---
+
+## **5. Results & Key Observations**
+
+1. **Network Properties**: FB100 networks are generally **sparse**, **highly clustered**, with **heavy-tailed** degree distributions.  
+2. **Assortativity**: Some attributes (year, dorm) show moderate to high homophily in certain schools; others (gender) show near-zero.  
+3. **Link Prediction**: Common Neighbors, Jaccard, Adamic–Adar all recover edges with varying precision–recall trade-offs, depending on graph density and the fraction of edges removed.  
+4. **Label Propagation**: Binary attributes (gender) yield higher accuracy than multi-category dorm or major. The fraction of removed labels and attribute homophily strongly impact success.  
+5. **Community Detection**: Attributes like dorm (in small residential schools) or year (in larger universities) align with discovered communities. Modularity reveals moderately distinct clusters, while homogeneity and assortativity clarify whether local or global correlation is stronger.
+
+---
+
+## **6. Contributing & Contact**
+
+- If you find a bug or want to add functionality, feel free to open an **issue** or submit a **pull request**.  
+- For course-related questions, contact:  
+  - *Vincent Gauthier* (vincent.gauthier@telecom-sudparis.eu)  
+- *Special Thanks* to Prof. Aaron Clauset and Prof. Mason A. Porter for providing the original adapted problems.
+
+**License**: This repository is for educational purposes. Check with your instructor or the original assignment guidelines for usage permissions.
+
+---

@@ -1,8 +1,4 @@
-Below is a **sample README.md** file that you can use in your GitHub repository to describe this entire lab. It briefly explains the **context** (FB100 dataset), the **objectives** (various network analyses), the **structure** of the code, and **how to run** it. Feel free to adapt the style or content to match your exact project structure.
-
----
-
-# **README: Network Science and Graph Learning Lab (NET 4103/7431)**
+# **Network Science and Graph Learning Lab (NET 4103/7431)**
 
 This repository contains all code and documentation for the **Network Science and Graph Learning** lab, which examines the **Facebook100 (FB100)** dataset. The FB100 dataset consists of Facebook friendship networks from 100 U.S. universities, circa 2005.
 
